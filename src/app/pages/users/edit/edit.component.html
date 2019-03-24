@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Category</nb-card-header>
+      <nb-card-body>
+        <form class="form-horizontal" #form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
+          <div class="input-group">
+            <input type="text" nbInput fullWidth placeholder="Name" formControlName="name"
+              [ngClass]="{ 'is-invalid': submitted && f.name.errors, 'form-control-danger':submitted && f.name.errors }">
+          </div>
+          <ng-container *ngIf="submitted && f.name.errors">
+            <p class="error-message" *ngIf="f.name.errors.required">
+              Name is required!
+            </p>
+            <p class="error-message" *ngIf="f.name.errors.minlength">
+              Name must be at least 4 characters!
+            </p>
+          </ng-container>
+          <div class="input-group">
+            <input type="file" [ngClass]="{ 'form-control-danger':submitted && f.image.errors }" nbInput fullWidth #file
+              accept='image/*' (change)="preview(file.files)" />
+            <input type="hidden" class="form-control" formControlName="image"
+              [ngClass]="{ 'is-invalid': submitted && f.image.errors }" />
+          </div>
+          <ng-container *ngIf="submitted && f.image.errors">
+            <p class="error-message" *ngIf="!message && f.image.errors.required">
+              Image is required!
+            </p>
+            <p class="error-message" *ngIf="message">
+              {{message}}
+            </p>
+          </ng-container>
+          <div class="input-group">
+            <input type="text" nbInput fullWidth formControlName="addedBy" />
+          </div>
+          <div class="input-group">
+            <button type="submit" class="btn btn-demo btn-success btn-hero">Update</button>
+          </div>
+        </form>
+      </nb-card-body>
+    </nb-card>
+    <div>
+      <nb-card>
+        <nb-card-body>
+          <div class="row justify-content-center">
+            <div class="col-4" *ngIf="categoryStatus=='Active'">
+              <button type="button" (click)="updateStatus('Inactive')" [nbSpinner]="spinner" nbSpinnerStatus="warning"
+                class="btn btn-demo btn-warning btn-hero">Deactivate</button>
+            </div>
+            <div class="col-4" [nbSpinner]="spinner" nbSpinnerStatus="success" *ngIf="categoryStatus=='Inactive'">
+              <button type="button" (click)="updateStatus('Active')"
+                class="btn btn-demo btn-success btn-hero">Activate</button>
+            </div>
+            <div class="col-4">
+              <button type="button" (click)="deleteCategory()" [nbSpinner]="spinner" nbSpinnerStatus="danger"
+                class="btn btn-demo btn-danger btn-hero">Delete</button>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+
+
+
+  <div class="col-lg-6" *ngIf="imgURL">
+    <nb-card>
+      <nb-card-header>Image Preview</nb-card-header>
+      <nb-card-body>
+        <img [src]="imgURL" width="auto" height="225">
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

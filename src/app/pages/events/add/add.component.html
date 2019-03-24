@@ -1,0 +1,285 @@
+<div class="row">
+  <div class="col-lg-8">
+    <nb-card>
+      <nb-card-header>Event Detail</nb-card-header>
+      <nb-card-body>
+        <form>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Title</label>
+            <div class="col-sm-9">
+              <input type="email" [ngClass]="{'form-control-danger':submitted && f.email.errors}" class="form-control"
+                placeholder="Title of Event" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+              <ng-container *ngIf="submitted && f.email.errors">
+                <p class="error-message" *ngIf=" f.email.errors.required">
+                  Email is required!
+                </p>
+                <p class="error-message" *ngIf="f.email.errors.email">
+                  Email must be a valid email address!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Category</label>
+            <div class="col-sm-9">
+
+              <select class="form-control">
+                <option>Minsk</option>
+                <option>Gomel</option>
+                <option>Brest</option>
+                <option>Grodno</option>
+                <option>Mogilev</option>
+              </select>
+              <nb-datepicker #picker [min]="min"></nb-datepicker>
+
+              <ng-container *ngIf="submitted && f.email.errors">
+                <p class="error-message" *ngIf=" f.email.errors.required">
+                  Email is required!
+                </p>
+                <p class="error-message" *ngIf="f.email.errors.email">
+                  Email must be a valid email address!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Main Photo</label>
+            <div class="col-sm-9">
+              <input type="file" [ngClass]="{ 'form-control-danger':submitted && f.image.errors }" nbInput fullWidth
+                #file accept='image/*' (change)="preview(file.files)" />
+              <input type="hidden" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.image.errors }" />
+              <ng-container *ngIf="submitted && f.image.errors">
+                <p class="error-message" *ngIf="!message && f.image.errors.required">
+                  Image is required!
+                </p>
+                <p class="error-message" *ngIf="message">
+                  {{message}}
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Thumbnail</label>
+            <div class="col-sm-9">
+              <input type="file" [ngClass]="{ 'form-control-danger':submitted && f.image.errors }" nbInput fullWidth
+                #file accept='image/*' (change)="preview(file.files)" />
+              <input type="hidden" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.image.errors }" />
+              <ng-container *ngIf="submitted && f.image.errors">
+                <p class="error-message" *ngIf="!message && f.image.errors.required">
+                  Image is required!
+                </p>
+                <p class="error-message" *ngIf="message">
+                  {{message}}
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Description</label>
+            <div class="col-sm-9">
+              <textarea rows="3" nbInput fullWidth placeholder="Long Description"></textarea>
+
+              <ng-container *ngIf="submitted && f.email.errors">
+                <p class="error-message" *ngIf=" f.email.errors.required">
+                  Email is required!
+                </p>
+                <p class="error-message" *ngIf="f.email.errors.email">
+                  Email must be a valid email address!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Organization</label>
+            <div class="col-sm-9">
+              <input type="email" [ngClass]="{'form-control-danger':submitted && f.email.errors}" class="form-control"
+                placeholder="Organization" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+              <ng-container *ngIf="submitted && f.email.errors">
+                <p class="error-message" *ngIf=" f.email.errors.required">
+                  Email is required!
+                </p>
+                <p class="error-message" *ngIf="f.email.errors.email">
+                  Email must be a valid email address!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Video</label>
+            <div class="col-sm-9">
+              <input type="email" [ngClass]="{'form-control-danger':submitted && f.email.errors}" class="form-control"
+                placeholder="Video" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+              <ng-container *ngIf="submitted && f.email.errors">
+                <p class="error-message" *ngIf=" f.email.errors.required">
+                  Email is required!
+                </p>
+                <p class="error-message" *ngIf="f.email.errors.email">
+                  Email must be a valid email address!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Link</label>
+            <div class="col-sm-9">
+              <input type="email" [ngClass]="{'form-control-danger':submitted && f.email.errors}" class="form-control"
+                placeholder="Link for external information" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+              <ng-container *ngIf="submitted && f.email.errors">
+                <p class="error-message" *ngIf=" f.email.errors.required">
+                  Email is required!
+                </p>
+                <p class="error-message" *ngIf="f.email.errors.email">
+                  Email must be a valid email address!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Allow Subscription</label>
+            <div class="col-sm-9">
+              <div [(ngModel)]="radioModel" name="ra" ngbRadioGroup
+                class="btn-group btn-group-toggle btn-outline-toggle-group btn-group-full-width btn-toggle-radio-group">
+                <label ngbButtonLabel class="btn btn-outline-success">
+                  <input ngbButton type="radio" value="0"> No
+                </label>
+                <label ngbButtonLabel class="btn btn-outline-success">
+                  <input ngbButton type="radio" value="1"> Yes
+                </label>
+              </div>
+              <ng-container *ngIf="submitted && f.email.errors">
+                <p class="error-message" *ngIf=" f.email.errors.required">
+                  Email is required!
+                </p>
+                <p class="error-message" *ngIf="f.email.errors.email">
+                  Email must be a valid email address!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">From</label>
+            <div class="col-sm-9">
+
+              <input nbInput class="form-control" placeholder="Event From Date" [nbDatepicker]="picker">
+              <nb-datepicker #picker [min]="min"></nb-datepicker>
+
+              <ng-container *ngIf="submitted && f.email.errors">
+                <p class="error-message" *ngIf=" f.email.errors.required">
+                  Email is required!
+                </p>
+                <p class="error-message" *ngIf="f.email.errors.email">
+                  Email must be a valid email address!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">To</label>
+            <div class="col-sm-9">
+
+              <input nbInput class="form-control" placeholder="Event To Date" [nbDatepicker]="picker">
+              <nb-datepicker #picker [min]="min"></nb-datepicker>
+
+              <ng-container *ngIf="submitted && f.email.errors">
+                <p class="error-message" *ngIf=" f.email.errors.required">
+                  Email is required!
+                </p>
+                <p class="error-message" *ngIf="f.email.errors.email">
+                  Email must be a valid email address!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Publication Date</label>
+            <div class="col-sm-9">
+
+              <input nbInput class="form-control" placeholder="Date for Publication" [nbDatepicker]="picker">
+              <nb-datepicker #picker [min]="min"></nb-datepicker>
+
+              <ng-container *ngIf="submitted && f.email.errors">
+                <p class="error-message" *ngIf=" f.email.errors.required">
+                  Email is required!
+                </p>
+                <p class="error-message" *ngIf="f.email.errors.email">
+                  Email must be a valid email address!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Place</label>
+            <div class="col-sm-9">
+              <ngx-search (positionChanged)="updateLocation($event)"></ngx-search>
+              <ngx-map [searchedLocation]="searchedLocation"></ngx-map>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="offset-sm-3 col-sm-9">
+              <button type="submit" [nbSpinner]="spinner" nbSpinnerStatus="success" class="btn  btn-success ">Sign
+                in</button>
+            </div>
+          </div>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-lg-4">
+    <nb-card>
+      <nb-card-header>Validation States</nb-card-header>
+      <nb-card-body>
+        <div class="form-group">
+          <input type="text" nbInput fullWidth status="info" placeholder="Input with Info">
+        </div>
+        <div class="form-group">
+          <input type="text" nbInput fullWidth status="success" placeholder="Input with Warning">
+        </div>
+        <div class="form-group">
+          <input type="text" nbInput fullWidth status="warning" placeholder="Input with Danger">
+        </div>
+        <div class="form-group">
+          <input type="text" nbInput fullWidth status="danger" placeholder="Input with Danger">
+        </div>
+        <div class="form-group validation-checkboxes row">
+          <nb-checkbox status="success" class="col-sm-4">Checkbox with Success</nb-checkbox>
+          <nb-checkbox status="warning" class="col-sm-4">Checkbox with Warning</nb-checkbox>
+          <nb-checkbox status="danger" class="col-sm-4">Checkbox with Danger</nb-checkbox>
+        </div>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header>Checkboxes & Radios</nb-card-header>
+      <nb-card-body>
+        <div class="row demo-checkboxes-radio">
+          <div class="demo-checkboxes col-sm-4">
+            <nb-checkbox>Checkbox 1</nb-checkbox>
+            <nb-checkbox [value]="true">Checkbox 2</nb-checkbox>
+          </div>
+          <div class="demo-radio col-sm-4">
+            <nb-radio-group [(value)]="radioGroupValue">
+              <nb-radio [value]="'This is value 1'">
+                Radio 1
+              </nb-radio>
+              <nb-radio [value]="'This is value 2'">
+                Radio 2
+              </nb-radio>
+              <nb-radio [value]="'This is value 3'">
+                Radio 3
+              </nb-radio>
+            </nb-radio-group>
+          </div>
+          <div class="demo-disabled-checkbox-radio col-sm-4">
+            <nb-checkbox disabled>Disabled Checkbox</nb-checkbox>
+            <nb-radio-group disabled>
+              <nb-radio [value]="'Disabled Value'">
+                Disabled Radio
+              </nb-radio>
+            </nb-radio-group>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
